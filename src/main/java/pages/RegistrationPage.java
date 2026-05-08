@@ -8,11 +8,8 @@ import base.BasePage;
 
 public class RegistrationPage extends BasePage{
 
-	HeaderSection hs;
 	public RegistrationPage(WebDriver driver) {
-		super(driver);
-		
-		hs = new HeaderSection(driver);
+		super(driver);		
 	}
 	
 	@FindBy(css = "div[id='content'] h3")

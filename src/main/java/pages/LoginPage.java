@@ -8,11 +8,8 @@ import base.BasePage;
 
 public class LoginPage extends BasePage{
 	
-	HeaderSection hs;
 	public LoginPage(WebDriver driver) {
 		super(driver);
-		
-		hs = new HeaderSection(driver);
 	}
 	
 	@FindBy(css = "div[id='content'] h3")
@@ -30,8 +27,11 @@ public class LoginPage extends BasePage{
 	@FindBy(xpath = "//button[text()='Login']")
 	WebElement loginBtn;
 	
-	@FindBy(css = "div[id='content'] h1")
+	@FindBy(tagName = "h1")
 	WebElement successfullLogin;
+	
+	@FindBy(tagName = "h1")
+	WebElement successfullLogout;
 	
 	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
 	WebElement errorMsg;
@@ -57,6 +57,10 @@ public class LoginPage extends BasePage{
 	public String getAlertMsg() {
 		waitOnly(errorMsg);
 		return errorMsg.getText();
+	}
+	
+	public String verifySuccessfullLogout() {
+		return successfullLogout.getText();
 	}
 
 }

@@ -8,9 +8,9 @@ import org.openqa.selenium.support.FindBy;
 
 import base.BasePage;
 
-public class HeaderSection extends BasePage{
-
-	public HeaderSection(WebDriver driver) {
+public class MyAccountPage extends BasePage{
+	
+	public MyAccountPage(WebDriver driver) {
 		super(driver);
 	}
 	
@@ -35,11 +35,5 @@ public class HeaderSection extends BasePage{
 			}
 		}
 	}
-	
-	public void navigateTo(String sectionName, String subSectionName1, String subSectionName2) {
-		navigateTo(sectionName, subSectionName1);
-		navigateTo(sectionName, subSectionName2);
-	}
-	
-	
+
 }

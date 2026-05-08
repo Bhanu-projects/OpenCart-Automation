@@ -7,7 +7,7 @@ import org.testng.asserts.SoftAssert;
 
 import base.BaseTest;
 import net.datafaker.Faker;
-import pages.HeaderSection;
+import pages.MyAccountPage;
 import pages.RegistrationPage;
 
 public class RegistrationTest extends BaseTest{
@@ -19,7 +19,7 @@ public class RegistrationTest extends BaseTest{
 	String email;
 	String pwd;
 	SoftAssert soft;
-	HeaderSection hs;
+	MyAccountPage map;
 	
 	
 	@BeforeMethod
@@ -27,13 +27,13 @@ public class RegistrationTest extends BaseTest{
 		rp = new RegistrationPage(driver);
 		fake = new Faker();
 		soft = new SoftAssert();
-		hs = new HeaderSection(driver);
+		map = new MyAccountPage(driver);
 	}
 	
 	@Test(description = "TC_RG_001: Register Valid Account")
 	public void verifySuccessfullRegistration() {
 		Assert.assertTrue(rp.verifyHomePage(), "!?Home Page is Not Loaded Properly?!");
-		hs.navigateTo("My Account", "Register");
+		map.navigateTo("My Account", "Register");
 		Assert.assertTrue(rp.verifyRegistrationPage(), "!?Registration Page is Not Loaded Properly?!");
 		firstName = fake.name().firstName();
 		lastName = fake.name().lastName();
@@ -48,7 +48,8 @@ public class RegistrationTest extends BaseTest{
 	@Test(description = "TC_RG_002: Register Duplicate Email")
 	public void verifyDuplicateEmail() {
 		verifySuccessfullRegistration();
-		hs.navigateTo("My Account", "Logout", "Register");
+		map.navigateTo("My Account", "Logout");
+		map.navigateTo("My Account", "Register");
 		Assert.assertTrue(rp.verifyRegistrationPage(), "!?Registration Page is Not Loaded Properly?!");
 		rp.fillRegisterDetails(firstName, lastName, email, pwd);
 		rp.agreePrivacyPolicy();
@@ -59,7 +60,7 @@ public class RegistrationTest extends BaseTest{
 	@Test(description = "TC_RG_003: Register Empty Submission")
 	public void verifyEmptySubmission() {
 		Assert.assertTrue(rp.verifyHomePage(), "!?Home Page is Not Loaded Properly?!");
-		hs.navigateTo("My Account", "Register");
+		map.navigateTo("My Account", "Register");
 		Assert.assertTrue(rp.verifyRegistrationPage(), "!?Registration Page is Not Loaded Properly?!");
 		rp.clickContinueBtn();
 		soft.assertEquals(rp.getAlertMsg(), "Warning: You must agree to the Privacy Policy!");
