@@ -33,6 +33,9 @@ public class LoginPage extends BasePage{
 	@FindBy(css = "div[id='content'] h1")
 	WebElement successfullLogin;
 	
+	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
+	WebElement errorMsg;
+	
 	public boolean verifyHomePage() {
 		return isDisplayed(homePage);
 	}
@@ -49,6 +52,11 @@ public class LoginPage extends BasePage{
 	
 	public String verifySuccessfullLogin() {
 		return successfullLogin.getText();
+	}
+	
+	public String getAlertMsg() {
+		waitOnly(errorMsg);
+		return errorMsg.getText();
 	}
 
 }
