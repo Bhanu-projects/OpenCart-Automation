@@ -17,13 +17,28 @@ public class HeaderSection extends BasePage{
 	@FindBy(xpath = "//div[@class='col text-end']//ul[@class='list-inline']//span")
 	List<WebElement> headerSection;
 	
-	public void section(String str) {
+	@FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right show']//a")
+	List<WebElement> subSection;
+	
+	public void navigateTo(String sectionName, String subSectionName) {
 		for(WebElement ele : headerSection) {
-			if(ele.getText().contains(str)) {
+			if(ele.getText().equals(sectionName)) {
 				scrollClick(ele);
 				break;
 			}
 		}
+		
+		for(WebElement ele : subSection) {
+			if(ele.getText().equals(subSectionName)) {
+				scrollClick(ele);
+				break;
+			}
+		}
+	}
+	
+	public void navigateTo(String sectionName, String subSectionName1, String subSectionName2) {
+		navigateTo(sectionName, subSectionName1);
+		navigateTo(sectionName, subSectionName2);
 	}
 	
 	

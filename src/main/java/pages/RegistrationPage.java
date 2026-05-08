@@ -1,7 +1,5 @@
 package pages;
 
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,11 +18,8 @@ public class RegistrationPage extends BasePage{
 	@FindBy(css = "div[id='content'] h3")
 	WebElement homePage;
 	
-	@FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-right show']//a")
-	List<WebElement> subSection;
-	
 	@FindBy(tagName = "h1")
-	WebElement registrationAccountTitle;
+	WebElement registrationPage;
 	
 	@FindBy(id = "input-firstname")
 	WebElement inputFirstName;
@@ -69,35 +64,8 @@ public class RegistrationPage extends BasePage{
 		return isDisplayed(homePage);
 	}
 	
-	public void navigateToRegistrationPage(String sectionName, String subSectionName) {
-		hs.section(sectionName);
-		for(WebElement ele : subSection) {
-			if(ele.getText().contains(subSectionName)) {
-				scrollClick(ele);
-				break;
-			}
-		}
-	}
-	
-	public void navigateToRegistrationPage(String sectionName, String subSectionName1, String subSectionName2) {
-		hs.section(sectionName);
-		for(WebElement ele : subSection) {
-			if(ele.getText().contains(subSectionName1)) {
-				scrollClick(ele);
-				break;
-			}
-		}
-		hs.section(sectionName);
-		for(WebElement ele : subSection) {
-			if(ele.getText().contains(subSectionName2)) {
-				scrollClick(ele);
-				break;
-			}
-		}
-	}
-	
 	public boolean verifyRegistrationPage() {
-		return isDisplayed(registrationAccountTitle);
+		return isDisplayed(registrationPage);
 	}
 
 	public void fillRegisterDetails(String firstName, String lastName, String email, String pwd) {
