@@ -51,7 +51,19 @@ public class RegistrationPage extends BasePage{
 	WebElement editAccount;
 	
 	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
-	WebElement warningMsg;
+	WebElement errorMsg;
+	
+	@FindBy(id = "error-firstname")
+	WebElement errorFirstName;
+	
+	@FindBy(id = "error-lastname")
+	WebElement errorLastName;
+	
+	@FindBy(id = "error-email")
+	WebElement errorEmail;
+	
+	@FindBy(id = "error-password")
+	WebElement errorPassword;
 	
 	public boolean verifyHomePage() {
 		return isDisplayed(homePage);
@@ -61,6 +73,23 @@ public class RegistrationPage extends BasePage{
 		hs.section(sectionName);
 		for(WebElement ele : subSection) {
 			if(ele.getText().contains(subSectionName)) {
+				scrollClick(ele);
+				break;
+			}
+		}
+	}
+	
+	public void navigateToRegistrationPage(String sectionName, String subSectionName1, String subSectionName2) {
+		hs.section(sectionName);
+		for(WebElement ele : subSection) {
+			if(ele.getText().contains(subSectionName1)) {
+				scrollClick(ele);
+				break;
+			}
+		}
+		hs.section(sectionName);
+		for(WebElement ele : subSection) {
+			if(ele.getText().contains(subSectionName2)) {
 				scrollClick(ele);
 				break;
 			}
@@ -92,8 +121,27 @@ public class RegistrationPage extends BasePage{
 	}
 	
 	public String getAlertMsg() {
-		waitOnly(warningMsg);
-		return warningMsg.getText();
+		waitOnly(errorMsg);
+		return errorMsg.getText();
 	}
 	
+	public String getErrorFirstName() {
+		scrollOnly(errorFirstName);
+		return errorFirstName.getText();
+	}
+	
+	public String getErrorLastName() {
+		scrollOnly(errorLastName);
+		return errorLastName.getText();
+	}
+	
+	public String getErrorEmail() {
+		scrollOnly(errorEmail);
+		return errorEmail.getText();
+	}
+	
+	public String getErrorPwd() {
+		scrollOnly(errorPassword);
+		return errorPassword.getText();
+	}
 }
