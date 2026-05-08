@@ -6,7 +6,7 @@
       <class name="tests.RegistrationTest">
         <methods>
           <include name="tearDown"/>
-          <include name="verifySuccessfullRegistration"/>
+          <include name="verifyDuplicateEmail"/>
           <include name="initializeClass"/>
           <include name="initialize"/>
         </methods>

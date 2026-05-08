@@ -50,6 +50,9 @@ public class RegistrationPage extends BasePage{
 	@FindBy(xpath = "//a[normalize-space()='Edit Account']")
 	WebElement editAccount;
 	
+	@FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
+	WebElement warningMsg;
+	
 	public boolean verifyHomePage() {
 		return isDisplayed(homePage);
 	}
@@ -60,9 +63,6 @@ public class RegistrationPage extends BasePage{
 			if(ele.getText().contains(subSectionName)) {
 				scrollClick(ele);
 				break;
-			}
-			else {
-				System.out.println("!?Please Enter Valid Sub Section Name?!");
 			}
 		}
 	}
@@ -89,6 +89,11 @@ public class RegistrationPage extends BasePage{
 	public String verifyAccountCreatedSuccessfullMsg() {
 		waitOnly(editAccount);
 		return successfullMsg.getText();
+	}
+	
+	public String getAlertMsg() {
+		waitOnly(warningMsg);
+		return warningMsg.getText();
 	}
 	
 }
